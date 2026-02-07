@@ -1,7 +1,7 @@
 // dugong.d.ts
 import { proto } from '../../WAProto';
 
-declare namespace asukoe {
+declare namespace kikyy {
     interface MediaUploadOptions {
         fileEncSha256?: Buffer;
         mediaType?: string;
@@ -190,65 +190,65 @@ declare namespace asukoe {
     }
 }
 
-declare class asukoe {
+declare class kikyy {
     constructor(
-        utils: asukoe.Utils,
-        waUploadToServer: asukoe.WAMediaUploadFunction,
+        utils: kikyy.Utils,
+        waUploadToServer: kikyy.WAMediaUploadFunction,
         relayMessageFn?: (jid: string, content: any, options?: any) => Promise<any>
     );
     
-    detectType(content: asukoe.MessageContent): 'PAYMENT' | 'PRODUCT' | 'INTERACTIVE' | 'ALBUM' | 'EVENT' | 'POLL_RESULT' | 'GROUP_STORY' | null;
+    detectType(content: kikyy.MessageContent): 'PAYMENT' | 'PRODUCT' | 'INTERACTIVE' | 'ALBUM' | 'EVENT' | 'POLL_RESULT' | 'GROUP_STORY' | null;
 
     handlePayment(
-        content: { requestPaymentMessage: asukoe.PaymentMessage },
+        content: { requestPaymentMessage: kikyy.PaymentMessage },
         quoted?: proto.IWebMessageInfo
     ): Promise<{ requestPaymentMessage: proto.Message.RequestPaymentMessage }>;
 
     handleProduct(
-        content: { productMessage: asukoe.ProductMessage },
+        content: { productMessage: kikyy.ProductMessage },
         jid: string,
         quoted?: proto.IWebMessageInfo
     ): Promise<{ viewOnceMessage: proto.Message.ViewOnceMessage }>;
 
     handleInteractive(
-        content: { interactiveMessage: asukoe.InteractiveMessage },
+        content: { interactiveMessage: kikyy.InteractiveMessage },
         jid: string,
         quoted?: proto.IWebMessageInfo
     ): Promise<{ interactiveMessage: proto.Message.InteractiveMessage }>;
 
     handleAlbum(
-        content: { albumMessage: asukoe.AlbumItem[] },
+        content: { albumMessage: kikyy.AlbumItem[] },
         jid: string,
         quoted?: proto.IWebMessageInfo
     ): Promise<any>;
 
     handleEvent(
-        content: { eventMessage: asukoe.EventMessage },
+        content: { eventMessage: kikyy.EventMessage },
         jid: string,
         quoted?: proto.IWebMessageInfo
     ): Promise<any>;
     
     handlePollResult(
-        content: { pollResultMessage: asukoe.PollResultMessage },
+        content: { pollResultMessage: kikyy.PollResultMessage },
         jid: string,
         quoted?: proto.IWebMessageInfo
     ): Promise<any>;
 
     handleGroupStory(
-        content: { groupStatusMessage: asukoe.GroupStatusMessage },
+        content: { groupStatusMessage: kikyy.GroupStatusMessage },
         jid: string,
         quoted?: proto.IWebMessageInfo
     ): Promise<any>;
 
     buildMessageContent(
         content: any,
-        opts?: asukoe.WAMessageContentGenerationOptions
+        opts?: kikyy.WAMessageContentGenerationOptions
     ): Promise<any>;
 
-    utils: asukoe.Utils;
+    utils: kikyy.Utils;
     relayMessage: (jid: string, content: any, options?: any) => Promise<any>;
-    waUploadToServer: asukoe.WAMediaUploadFunction;
-    bail: asukoe.BailUtils;
+    waUploadToServer: kikyy.WAMediaUploadFunction;
+    bail: kikyy.BailUtils;
 }
 
-export = asukoe;
+export = kikyy;
